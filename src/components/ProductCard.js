@@ -1,6 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
+import { CartContext } from "../context/CartContext";
 
 const ProductCard = ({ product }) => {
+  const { cartItems, setCartItems } = useContext(CartContext);
+
+  const handleAddToCart = () => {
+    const itemIndex = cartItems.findIndex((item) => item.id === product.id);
+    if (itemIndex >= 0) {
+      const updatedCartItems = [...cartItems];
+      updatedCartItems[itemIndex].quantity += 1;
+      setCartItems(updatedCartItems);
+      localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
+    } else {
+      const newCartItems = [...cartItems, { ...product, quantity: 1 }];
+      setCartItems(newCartItems);
+      localStorage.setItem("cartItems", JSON.stringify(newCartItems));
+    }
+  };
+
   return (
     <div
       className="card"
@@ -23,6 +40,7 @@ const ProductCard = ({ product }) => {
         <a href={`/products/${product.id}`} className="btn btn-primary">
           View Details
         </a>
+        <button onClick={handleAddToCart}>Add to Cart</button>
       </div>
     </div>
   );
