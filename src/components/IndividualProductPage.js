@@ -1,10 +1,13 @@
-import { Box, Chip, CircularProgress, Container, Paper } from "@mui/material";
+import { Box, Button, Chip, CircularProgress, Paper } from "@mui/material";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { CartContext } from "../context/CartContext";
 
 const IndividualProductPage = () => {
   const { productId } = useParams();
+  const { handleAddToCart } = useContext(CartContext);
+
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
@@ -46,6 +49,13 @@ const IndividualProductPage = () => {
         label={` Rating - ${product.rating.rate}
         (${product.rating.count} votes) `}
       />
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => handleAddToCart(product)}
+      >
+        Add to Cart
+      </Button>
     </Paper>
   );
 };

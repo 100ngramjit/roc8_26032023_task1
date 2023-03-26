@@ -4,22 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 
 const ProductCard = ({ product }) => {
-  const { cartItems, setCartItems } = useContext(CartContext);
+  const { handleAddToCart } = useContext(CartContext);
   const navigate = useNavigate();
-
-  const handleAddToCart = () => {
-    const itemIndex = cartItems.findIndex((item) => item.id === product.id);
-    if (itemIndex >= 0) {
-      const updatedCartItems = [...cartItems];
-      updatedCartItems[itemIndex].quantity += 1;
-      setCartItems(updatedCartItems);
-      localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
-    } else {
-      const newCartItems = [...cartItems, { ...product, quantity: 1 }];
-      setCartItems(newCartItems);
-      localStorage.setItem("cartItems", JSON.stringify(newCartItems));
-    }
-  };
 
   return (
     <div
@@ -40,7 +26,11 @@ const ProductCard = ({ product }) => {
         <h5 className="card-title">{product.title}</h5>
 
         <p className="card-text">$ {product.price}</p>
-        <Button variant="contained" size="small" onClick={handleAddToCart}>
+        <Button
+          variant="contained"
+          size="small"
+          onClick={() => handleAddToCart(product)}
+        >
           Add to Cart
         </Button>
         <Button
