@@ -1,4 +1,4 @@
-import { Button, Card } from "@mui/material";
+import { Button, Card, Box } from "@mui/material";
 import React, { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 
@@ -45,7 +45,7 @@ const CartPage = () => {
               <div>
                 <h3>{item.title}</h3>
                 <p>${item.price}</p>
-                <div className="quantity">
+                <Box className="quantity">
                   <Button
                     variant="contained"
                     size="small"
@@ -61,7 +61,7 @@ const CartPage = () => {
                   >
                     +
                   </Button>
-                </div>
+                </Box>
               </div>
             </Card>
           ))}

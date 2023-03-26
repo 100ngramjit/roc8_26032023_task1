@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Container, Paper } from "@mui/material";
+import { Box, Chip, CircularProgress, Container, Paper } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -37,11 +37,12 @@ const IndividualProductPage = () => {
         alt={product.title}
       />
       <p>{product.description}</p>
-      <p>${product.price}</p>
-      <p>
-        Rating - {product.rating.rate}
-        {`(${product.rating.count} votes) `}
-      </p>
+      <Chip label={`$ ${product.price}`} />
+      <Chip
+        sx={{ ml: 2 }}
+        label={` Rating - ${product.rating.rate}
+        (${product.rating.count} votes) `}
+      />
     </Paper>
   );
 };

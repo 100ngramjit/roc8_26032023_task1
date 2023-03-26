@@ -69,7 +69,7 @@ const ProductListing = () => {
               onChange={handleInputChange}
               sx={{ input: { color: "white" } }}
             />
-            <Button color="inherit" onClick={handleSearch}>
+            <Button style={{ ml: 2 }} color="inherit" onClick={handleSearch}>
               Search
             </Button>
           </div>
