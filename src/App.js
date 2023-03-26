@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import CartPage from "./components/CartPage";
 import IndividualProductPage from "./components/IndividualProductPage";
 import ProductListing from "./components/ProductListing";
 
@@ -12,6 +13,7 @@ function App() {
           path="/products/:productId"
           element={<IndividualProductPage />}
         />
+        <Route path="/cart" element={<CartPage />} />
       </Routes>
     </div>
   );
