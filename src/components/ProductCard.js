@@ -1,8 +1,11 @@
+import { Button } from "@mui/material";
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 
 const ProductCard = ({ product }) => {
   const { cartItems, setCartItems } = useContext(CartContext);
+  const navigate = useNavigate();
 
   const handleAddToCart = () => {
     const itemIndex = cartItems.findIndex((item) => item.id === product.id);
@@ -37,10 +40,12 @@ const ProductCard = ({ product }) => {
         <h5 className="card-title">{product.title}</h5>
 
         <p className="card-text">${product.price}</p>
-        <a href={`/products/${product.id}`} className="btn btn-primary">
+        <Button variant="contained" size="small" onClick={handleAddToCart}>
+          Add to Cart
+        </Button>
+        <Button onClick={() => navigate(`/products/${product.id}`)}>
           View Details
-        </a>
-        <button onClick={handleAddToCart}>Add to Cart</button>
+        </Button>
       </div>
     </div>
   );

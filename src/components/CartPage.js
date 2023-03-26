@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import React, { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 
@@ -41,13 +42,21 @@ const CartPage = () => {
                 <h3>{item.title}</h3>
                 <p>${item.price}</p>
                 <div className="quantity">
-                  <button onClick={() => handleDecrementQuantity(item.id)}>
+                  <Button
+                    variant="contained"
+                    size="small"
+                    onClick={() => handleDecrementQuantity(item.id)}
+                  >
                     -
-                  </button>
+                  </Button>
                   <span>{item.quantity}</span>
-                  <button onClick={() => handleIncrementQuantity(item.id)}>
+                  <Button
+                    variant="contained"
+                    size="small"
+                    onClick={() => handleIncrementQuantity(item.id)}
+                  >
                     +
-                  </button>
+                  </Button>
                 </div>
               </div>
             </div>

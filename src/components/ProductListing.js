@@ -1,3 +1,4 @@
+import { AppBar, Button, TextField, Toolbar } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import CartIcon from "./CartIcon";
@@ -48,18 +49,25 @@ const ProductListing = () => {
 
   return (
     <div>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <div>
-          <input
-            type="text"
-            placeholder="Search products..."
-            value={searchTerm}
-            onChange={handleInputChange}
-          />
-          <button onClick={handleSearch}>Search</button>
-        </div>
-        <CartIcon />
-      </div>
+      <AppBar position="static">
+        <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
+          <div>
+            <TextField
+              hiddenLabel
+              size="small"
+              type="text"
+              placeholder="Search products..."
+              value={searchTerm}
+              onChange={handleInputChange}
+              sx={{ input: { color: "white" } }}
+            />
+            <Button color="inherit" onClick={handleSearch}>
+              Search
+            </Button>
+          </div>
+          <CartIcon />
+        </Toolbar>
+      </AppBar>
       {isLoading ? (
         <p>loading</p>
       ) : (
