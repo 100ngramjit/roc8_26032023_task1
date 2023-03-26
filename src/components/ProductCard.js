@@ -43,7 +43,13 @@ const ProductCard = ({ product }) => {
         <Button variant="contained" size="small" onClick={handleAddToCart}>
           Add to Cart
         </Button>
-        <Button onClick={() => navigate(`/products/${product.id}`)}>
+        <Button
+          variant="contained"
+          color="secondary"
+          size="small"
+          sx={{ ml: 2 }}
+          onClick={() => navigate(`/products/${product.id}`)}
+        >
           View Details
         </Button>
       </div>

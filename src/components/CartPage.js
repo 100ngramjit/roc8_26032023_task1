@@ -1,4 +1,4 @@
-import { Button, Card, Box } from "@mui/material";
+import { Button, Card, Box, Chip, Container } from "@mui/material";
 import React, { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 
@@ -25,7 +25,7 @@ const CartPage = () => {
   };
 
   return (
-    <div className="cart-page">
+    <Container>
       <h2>Shopping Cart</h2>
       {cartItems.length === 0 ? (
         <p>Your cart is empty.</p>
@@ -53,7 +53,8 @@ const CartPage = () => {
                   >
                     -
                   </Button>
-                  <span>{item.quantity}</span>
+                  <Chip label={item.quantity} />
+
                   <Button
                     variant="contained"
                     size="small"
@@ -67,7 +68,7 @@ const CartPage = () => {
           ))}
         </div>
       )}
-    </div>
+    </Container>
   );
 };
 
