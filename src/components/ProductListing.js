@@ -4,14 +4,22 @@ import CartIcon from "./CartIcon";
 import ProductCard from "./ProductCard";
 
 const ProductListing = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const response = await axios.get(`https://fakestoreapi.com/products`);
-      console.log(searchTerm, response);
-      setProducts(response?.data);
+      try {
+        setIsLoading(true);
+        const response = await axios.get(`https://fakestoreapi.com/products`);
+        console.log(searchTerm, response);
+        setProducts(response?.data);
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error);
+        setIsLoading(false);
+      }
     };
 
     fetchProducts();
@@ -40,20 +48,29 @@ const ProductListing = () => {
 
   return (
     <div>
-      <div>
-        <input
-          type="text"
-          placeholder="Search products..."
-          value={searchTerm}
-          onChange={handleInputChange}
-        />
-        <button onClick={handleSearch}>Search</button>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div>
+          <input
+            type="text"
+            placeholder="Search products..."
+            value={searchTerm}
+            onChange={handleInputChange}
+          />
+          <button onClick={handleSearch}>Search</button>
+        </div>
         <CartIcon />
       </div>
-
-      {products?.map((product) => (
-        <ProductCard product={product} key={product.id} />
-      ))}
+      {isLoading ? (
+        <p>loading</p>
+      ) : (
+        <div>
+          {products.length > 0 &&
+            products?.map((product) => (
+              <ProductCard product={product} key={product.id} />
+            ))}
+          {products.length === 0 && <div>No Products</div>}
+        </div>
+      )}
     </div>
   );
 };
