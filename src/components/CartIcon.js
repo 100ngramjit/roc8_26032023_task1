@@ -1,3 +1,4 @@
+import { Badge, IconButton } from "@mui/material";
 import React, { useContext } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
@@ -13,10 +14,15 @@ const CartIcon = () => {
   );
 
   return (
-    <div className="cart-icon" onClick={() => navigate("/cart")}>
-      <FaShoppingCart />
-      {cartItemCount > 0 && <span className="cart-count">{cartItemCount}</span>}
-    </div>
+    <IconButton
+      className="cart-icon"
+      color="inherit"
+      onClick={() => navigate("/cart")}
+    >
+      <Badge badgeContent={cartItemCount} color="secondary">
+        <FaShoppingCart />
+      </Badge>
+    </IconButton>
   );
 };
 
