@@ -4,14 +4,6 @@ import { CartContext } from "../context/CartContext";
 const CartPage = () => {
   const { cartItems, setCartItems } = useContext(CartContext);
 
-  const handleQuantityChange = (itemId, newQuantity) => {
-    const updatedCartItems = [...cartItems];
-    const itemIndex = updatedCartItems.findIndex((item) => item.id === itemId);
-    updatedCartItems[itemIndex].quantity = newQuantity;
-    setCartItems(updatedCartItems);
-    localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
-  };
-
   const handleIncrementQuantity = (itemId) => {
     const updatedCartItems = [...cartItems];
     const itemIndex = updatedCartItems.findIndex((item) => item.id === itemId);
@@ -37,9 +29,9 @@ const CartPage = () => {
       {cartItems.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (
-        <ul>
+        <div>
           {cartItems.map((item) => (
-            <li key={item.id}>
+            <div key={item.id}>
               <img
                 src={item.image}
                 alt={item.title}
@@ -58,9 +50,9 @@ const CartPage = () => {
                   </button>
                 </div>
               </div>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );
