@@ -22,7 +22,6 @@ const ProductListing = () => {
       try {
         setIsLoading(true);
         const response = await axios.get(`https://fakestoreapi.com/products`);
-        console.log(searchTerm, response);
         setProducts(response?.data);
         setIsLoading(false);
       } catch (error) {

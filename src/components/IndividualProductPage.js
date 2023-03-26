@@ -9,12 +9,15 @@ const IndividualProductPage = () => {
 
   useEffect(() => {
     const fetchProduct = async () => {
-      const response = await axios.get(
-        `https://fakestoreapi.com/products/${productId}`
-      );
+      try {
+        const response = await axios.get(
+          `https://fakestoreapi.com/products/${productId}`
+        );
 
-      setProduct(response?.data);
-      console.log(response);
+        setProduct(response?.data);
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     fetchProduct();

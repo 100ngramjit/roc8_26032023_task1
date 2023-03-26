@@ -39,7 +39,7 @@ const ProductCard = ({ product }) => {
       <div className="card-body">
         <h5 className="card-title">{product.title}</h5>
 
-        <p className="card-text">${product.price}</p>
+        <p className="card-text">$ {product.price}</p>
         <Button variant="contained" size="small" onClick={handleAddToCart}>
           Add to Cart
         </Button>
