@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, Card } from "@mui/material";
 import React, { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 
@@ -32,7 +32,11 @@ const CartPage = () => {
       ) : (
         <div>
           {cartItems.map((item) => (
-            <div key={item.id}>
+            <Card
+              sx={{ display: "flex", mb: 2, p: 2 }}
+              elevation={20}
+              key={item.id}
+            >
               <img
                 src={item.image}
                 alt={item.title}
@@ -59,7 +63,7 @@ const CartPage = () => {
                   </Button>
                 </div>
               </div>
-            </div>
+            </Card>
           ))}
         </div>
       )}

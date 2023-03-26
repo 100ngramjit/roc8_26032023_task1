@@ -1,4 +1,11 @@
-import { AppBar, Button, Grid, TextField, Toolbar } from "@mui/material";
+import {
+  AppBar,
+  Button,
+  CircularProgress,
+  Grid,
+  TextField,
+  Toolbar,
+} from "@mui/material";
 import { Box } from "@mui/system";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
@@ -71,7 +78,9 @@ const ProductListing = () => {
       </AppBar>
       <Box sx={{ m: 5 }}>
         {isLoading ? (
-          <p>loading</p>
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <CircularProgress />
+          </Box>
         ) : (
           <Grid container spacing={2}>
             {products.length > 0 &&
