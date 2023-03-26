@@ -1,4 +1,5 @@
-import { AppBar, Button, TextField, Toolbar } from "@mui/material";
+import { AppBar, Button, Grid, TextField, Toolbar } from "@mui/material";
+import { Box } from "@mui/system";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import CartIcon from "./CartIcon";
@@ -48,7 +49,7 @@ const ProductListing = () => {
   };
 
   return (
-    <div>
+    <Box>
       <AppBar position="static">
         <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
           <div>
@@ -68,18 +69,20 @@ const ProductListing = () => {
           <CartIcon />
         </Toolbar>
       </AppBar>
-      {isLoading ? (
-        <p>loading</p>
-      ) : (
-        <div>
-          {products.length > 0 &&
-            products?.map((product) => (
-              <ProductCard product={product} key={product.id} />
-            ))}
-          {products.length === 0 && <div>No Products</div>}
-        </div>
-      )}
-    </div>
+      <Box sx={{ m: 5 }}>
+        {isLoading ? (
+          <p>loading</p>
+        ) : (
+          <Grid container spacing={2}>
+            {products.length > 0 &&
+              products?.map((product) => (
+                <ProductCard product={product} key={product.id} />
+              ))}
+            {products.length === 0 && <div>No Products</div>}
+          </Grid>
+        )}
+      </Box>
+    </Box>
   );
 };
 

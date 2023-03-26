@@ -28,7 +28,7 @@ const ProductCard = ({ product }) => {
         width: "18rem",
         height: "25rem",
         boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
-        margin: "2rem",
+        margin: "1rem",
       }}
     >
       <img
